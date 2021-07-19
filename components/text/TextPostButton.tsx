@@ -27,6 +27,7 @@ export default function TextPostButton() {
       event.preventDefault()
 
       await post({ text })
+      setText('')
       onClose()
     },
     []
