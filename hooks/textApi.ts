@@ -6,6 +6,10 @@ type FetchAllArgs = {
   page: number
 }
 
+type PostArgs = {
+  text: string
+}
+
 type TextAllResponseData = TextResponse[]
 
 const limit = 20
@@ -20,5 +24,14 @@ export function useTextApi() {
     return response.data.map((textData) => toText(textData))
   }
 
-  return { fetchAll }
+  async function post(args: PostArgs) {
+    const { text } = args
+    await axios.post(
+      `${API_ENDPOINT}/text`,
+      { text },
+      { headers: { Authorization: 'HelloWorld' } }
+    )
+  }
+
+  return { fetchAll, post }
 }

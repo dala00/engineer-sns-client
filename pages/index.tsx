@@ -3,6 +3,7 @@ import React, { useCallback, useEffect, useState } from 'react'
 import InfiniteScroll from 'react-infinite-scroller'
 import Layout from '../components/Layout'
 import TextList from '../components/text/TextList'
+import TextPostButton from '../components/text/TextPostButton'
 import { useTextApi } from '../hooks/textApi'
 import { Text } from '../models/text'
 
@@ -55,6 +56,7 @@ export default function Home() {
       >
         <TextList texts={texts} />
       </InfiniteScroll>
+      <TextPostButton />
     </Layout>
   )
 }
