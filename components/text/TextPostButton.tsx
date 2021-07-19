@@ -1,4 +1,5 @@
 import {
+  Box,
   Button,
   IconButton,
   Modal,
@@ -11,13 +12,12 @@ import {
   Textarea,
   useDisclosure,
 } from '@chakra-ui/react'
-import React, { FormEventHandler } from 'react'
+import React from 'react'
 import { useState } from 'react'
 import { useCallback } from 'react'
 import { MdAdd } from 'react-icons/md'
 import { useTextApi } from '../../hooks/textApi'
 import { useTexts } from '../../hooks/texts'
-import { toText } from '../../models/text'
 
 export default function TextPostButton() {
   const { isOpen, onOpen, onClose } = useDisclosure()
@@ -40,16 +40,14 @@ export default function TextPostButton() {
   )
 
   return (
-    <>
+    <Box position="sticky" bottom={4} width="100%" textAlign="right">
       <IconButton
         colorScheme="teal"
         aria-label="Open post form"
         icon={<MdAdd />}
         onClick={onOpen}
-        position="fixed"
-        right={4}
-        bottom={4}
         borderRadius="50%"
+        size="lg"
       />
 
       <Modal isOpen={isOpen} onClose={onClose}>
@@ -76,6 +74,6 @@ export default function TextPostButton() {
           </form>
         </ModalContent>
       </Modal>
-    </>
+    </Box>
   )
 }
