@@ -13,7 +13,9 @@ const limit = 20
 export function useTextApi() {
   async function fetchAll(args: FetchAllArgs) {
     const response = await axios.get<TextAllResponseData>(
-      `${API_ENDPOINT}/text/all?$orderby=_created_at+desc&$limit=${limit}`
+      `${API_ENDPOINT}/text/all?$orderby=_created_at+desc&$skip=${
+        (args.page - 1) * limit
+      }&$limit=${limit}`
     )
     return response.data.map((textData) => toText(textData))
   }
