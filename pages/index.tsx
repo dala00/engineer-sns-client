@@ -48,7 +48,7 @@ export default function Home() {
         loadMore={loadMore}
         hasMore={hasMore}
         loader={
-          <Center>
+          <Center key="spinner">
             <Spinner />
           </Center>
         }
