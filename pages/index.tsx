@@ -1,24 +1,19 @@
 import { Center, Spinner } from '@chakra-ui/react'
-import axios from 'axios'
 import { useCallback, useEffect, useState } from 'react'
 import Layout from '../components/Layout'
 import TextList from '../components/text/TextList'
-import { API_ENDPOINT } from '../lib/constants'
+import { useTextApi } from '../hooks/textApi'
 import { Text } from '../models/text'
-
-type TextAllResponseData = Text[]
 
 export default function Home() {
   const [texts, setTexts] = useState<Text[]>([])
   const [loading, setLoading] = useState(true)
+  const { fetchAll } = useTextApi()
 
   const initialize = useCallback(async () => {
-    const response = await axios.get<TextAllResponseData>(
-      `${API_ENDPOINT}/text/all`
-    )
-    setTexts(response.data.reverse())
+    setTexts(await fetchAll({ page: 1 }))
     setLoading(false)
-  }, [])
+  }, [fetchAll])
 
   useEffect(() => {
     initialize()
