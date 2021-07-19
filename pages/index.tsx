@@ -5,10 +5,10 @@ import Layout from '../components/Layout'
 import TextList from '../components/text/TextList'
 import TextPostButton from '../components/text/TextPostButton'
 import { useTextApi } from '../hooks/textApi'
-import { Text } from '../models/text'
+import { useTexts } from '../hooks/texts'
 
 export default function Home() {
-  const [texts, setTexts] = useState<Text[]>([])
+  const { texts, setTexts } = useTexts()
   const [loading, setLoading] = useState(true)
   const [page, setPage] = useState(1)
   const [hasMore, setHasMore] = useState(true)
