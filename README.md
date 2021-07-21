@@ -1,3 +1,8 @@
+下記記事のAPIに勝手にクライアントをつくったものです。
+
+[エンジニア・プログラマにしか使えないSNSを作ってみた話
+](https://qiita.com/HawkClaws/items/599d7666f55e79ef7f56)
+
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Getting Started
