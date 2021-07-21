@@ -18,11 +18,13 @@ import { useCallback } from 'react'
 import { MdAdd } from 'react-icons/md'
 import { useTextApi } from '../../hooks/textApi'
 import { useTexts } from '../../hooks/texts'
+import { useUserApi } from '../../hooks/userApi'
 
 export default function TextPostButton() {
   const { isOpen, onOpen, onClose } = useDisclosure()
   const { post, fetchAll } = useTextApi()
-  const { mergeNewTexts } = useTexts()
+  const { fetchUsersAll } = useUserApi()
+  const { mergeNewTexts, setUsers } = useTexts()
   const [text, setText] = useState('')
 
   const submit = useCallback(
@@ -33,6 +35,7 @@ export default function TextPostButton() {
       setText('')
       onClose()
 
+      fetchUsersAll().then((users) => setUsers(users))
       const texts = await fetchAll({ page: 1 })
       mergeNewTexts(texts)
     },

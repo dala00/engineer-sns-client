@@ -6,13 +6,15 @@ import TextList from '../components/text/TextList'
 import TextPostButton from '../components/text/TextPostButton'
 import { useTextApi } from '../hooks/textApi'
 import { useTexts } from '../hooks/texts'
+import { useUserApi } from '../hooks/userApi'
 
 export default function Home() {
-  const { texts, setTexts } = useTexts()
+  const { texts, setTexts, users, setUsers } = useTexts()
   const [loading, setLoading] = useState(true)
   const [page, setPage] = useState(1)
   const [hasMore, setHasMore] = useState(true)
   const { fetchAll } = useTextApi()
+  const { fetchUsersAll } = useUserApi()
 
   const loadMore = useCallback(async () => {
     if (!hasMore || loading) {
@@ -21,6 +23,7 @@ export default function Home() {
 
     setLoading(true)
 
+    fetchUsers()
     const newTexts = await fetchAll({ page })
 
     if (newTexts.length === 0) {
@@ -32,8 +35,13 @@ export default function Home() {
     setLoading(false)
   }, [hasMore, page, loading, texts])
 
+  const fetchUsers = useCallback(async () => {
+    setUsers(await fetchUsersAll())
+  }, [])
+
   const initialize = useCallback(async () => {
     setTexts(await fetchAll({ page: 1 }))
+    fetchUsers()
     setLoading(false)
     setPage(2)
   }, [])
@@ -54,7 +62,7 @@ export default function Home() {
           </Center>
         }
       >
-        <TextList texts={texts} />
+        <TextList texts={texts} users={users} />
       </InfiniteScroll>
       <TextPostButton />
     </Layout>

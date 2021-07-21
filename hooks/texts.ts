@@ -1,14 +1,21 @@
 import { useCallback } from 'react'
 import { atom, useRecoilState } from 'recoil'
 import { Text } from '../models/text'
+import { User } from '../models/user'
 
 const textsState = atom<Text[]>({
   key: 'texts/texts',
   default: [],
 })
 
+const usersState = atom<User[]>({
+  key: 'texts/users',
+  default: [],
+})
+
 export function useTexts() {
   const [texts, setTexts] = useRecoilState(textsState)
+  const [users, setUsers] = useRecoilState(usersState)
 
   const mergeNewTexts = useCallback(
     (newTexts: Text[]) => {
@@ -24,5 +31,5 @@ export function useTexts() {
     [texts]
   )
 
-  return { texts, setTexts, mergeNewTexts }
+  return { texts, setTexts, mergeNewTexts, users, setUsers }
 }
