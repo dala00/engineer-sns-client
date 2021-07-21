@@ -1,6 +1,7 @@
-import { Box, Container } from '@chakra-ui/react'
+import { Box, Container, Icon, HStack } from '@chakra-ui/react'
 import Head from 'next/head'
 import React from 'react'
+import { FaGithub } from 'react-icons/fa'
 
 export default function Layout({ children }) {
   return (
@@ -17,7 +18,19 @@ export default function Layout({ children }) {
         mb={4}
         padding={4}
       >
-        <Container>Engineer SNS Client</Container>
+        <Container>
+          <Box display="flex" justifyContent="space-between">
+            <Box>Engineer SNS Client</Box>
+            <HStack spacing={4}>
+              <a href="https://qiita.com/HawkClaws/items/599d7666f55e79ef7f56">
+                Qiita
+              </a>
+              <a href="https://github.com/dala00/engineer-sns-client">
+                <Icon as={FaGithub} w={6} h={6} />
+              </a>
+            </HStack>
+          </Box>
+        </Container>
       </Box>
 
       <Container>{children}</Container>
