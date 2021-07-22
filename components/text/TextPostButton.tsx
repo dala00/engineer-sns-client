@@ -43,7 +43,7 @@ export default function TextPostButton() {
   )
 
   return (
-    <Box position="sticky" bottom={4} width="100%" textAlign="right">
+    <Box>
       <IconButton
         colorScheme="teal"
         aria-label="Open post form"

@@ -1,9 +1,10 @@
-import { Center, Spinner } from '@chakra-ui/react'
+import { Box, Center, Spinner, Stack } from '@chakra-ui/react'
 import React, { useCallback, useEffect, useState } from 'react'
 import InfiniteScroll from 'react-infinite-scroller'
 import Layout from '../components/Layout'
 import TextList from '../components/text/TextList'
 import TextPostButton from '../components/text/TextPostButton'
+import UserSettingButton from '../components/user/UserSettingButton'
 import { useTextApi } from '../hooks/textApi'
 import { useTexts } from '../hooks/texts'
 import { useUserApi } from '../hooks/userApi'
@@ -64,7 +65,12 @@ export default function Home() {
       >
         <TextList texts={texts} users={users} />
       </InfiniteScroll>
-      <TextPostButton />
+      <Box position="sticky" bottom={4} width="100%" textAlign="right">
+        <Stack spacing={2} direction="column">
+          <UserSettingButton />
+          <TextPostButton />
+        </Stack>
+      </Box>
     </Layout>
   )
 }
