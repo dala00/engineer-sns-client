@@ -1,4 +1,17 @@
-import { Box, Flex, Image, Link } from '@chakra-ui/react'
+import {
+  Box,
+  Flex,
+  Image,
+  Link,
+  Popover,
+  PopoverArrow,
+  PopoverBody,
+  PopoverCloseButton,
+  PopoverContent,
+  PopoverHeader,
+  PopoverTrigger,
+  Tooltip,
+} from '@chakra-ui/react'
 import React from 'react'
 import { useCallback } from 'react'
 import { Text } from '../../models/text'
@@ -52,9 +65,22 @@ export default function TextListRow(props: Props) {
       <>
         <Flex alignItems="center" mb={2}>
           {user ? (
-            <Box fontSize={10} color="gray.700" mr={2}>
-              {user.name}
-            </Box>
+            <Popover>
+              <PopoverTrigger>
+                <Box fontSize={10} color="teal.400" mr={2} cursor="pointer">
+                  {user.name}
+                </Box>
+              </PopoverTrigger>
+              <PopoverContent fontSize={12}>
+                <PopoverArrow />
+                <PopoverCloseButton />
+                <PopoverHeader>{user.name}</PopoverHeader>
+                <PopoverBody>
+                  <Box>{user.id}</Box>
+                  <Box>{user.description}</Box>
+                </PopoverBody>
+              </PopoverContent>
+            </Popover>
           ) : (
             <Box fontSize={9} color="gray.700" mr={2}>
               {text.userId}
